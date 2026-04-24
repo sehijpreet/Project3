@@ -1,0 +1,23 @@
+# Data
+data/
+output/
+
+# Large files
+*.csv
+*.txt
+*.rds
+*.RData
+*.xlsx
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+
+# Python
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+Thumbs.db
