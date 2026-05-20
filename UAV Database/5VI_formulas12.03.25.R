@@ -1,3 +1,4 @@
+
 #all formulas
 red.F <- function(red) { red }
 green.F <- function(green) { green }

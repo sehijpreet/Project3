@@ -2,7 +2,7 @@ rm(list=ls())
 
 getwd()
 
-setwd('../../../../../../Desktop/PhD data/P3/Exploratory_DA/output/')
+setwd('../Desktop/PhD data/P3/Exploratory_DA/output/')
 
 VIs <- read.csv('../../UAV Database/VIs_Database_SpATS.csv')
 Biomass <- read.csv('../../UAV Database/Biomass_Database_SpATS.csv')
@@ -17,24 +17,17 @@ table(VIs$Season)
 table(VIs$Rep)
 table(Biomass$Rep)
 
-VIs[VIs$Genotype=='19.55-42'& VIs$Season=='2020-21'& VIs$SeasonTime=='43'& VIs$Trait=='NDVIrededge',]
+#VIs[VIs$Genotype=='19.55-42'& VIs$Season=='2020-21'& VIs$SeasonTime=='43'& VIs$Trait=='NDVIrededge',]
 
-VIs[VIs$Genotype=='19.16-273'& VIs$Season=='2020-21'& VIs$SeasonTime=='56'& VIs$Trait=='NDVIrededge',]
+#VIs[VIs$Genotype=='19.16-273'& VIs$Season=='2020-21'& VIs$SeasonTime=='56'& VIs$Trait=='NDVIrededge',]
 
 
 #Biomass[Biomass$Genotype=='19.55-42'& Biomass$Season=='2020-21'& Biomass$SeasonTime == '56' & Biomass$Trait=='CanopyArea',]
 
-a <- unique(VIs$Genotype[VIs$Season == "2020-21"])
-b <- unique(Biomass$Genotype[Biomass$Season == "2020-21"])
-c<- intersect(a,b)
-setdiff(a,b)
 
+#Biomass[Biomass$Genotype=='19.55-42'& Biomass$Season=='2020-21'& Biomass$SeasonTime=='56' & Biomass$Trait=='CanopyArea',]
 
-Biomass[Biomass$Genotype=='19.55-42'& Biomass$Season=='2020-21'& Biomass$SeasonTime=='56' & Biomass$Trait=='CanopyArea',]
-
-Biomass[Biomass$Genotype=='19.16-273'& Biomass$Season=='2020-21'& Biomass$SeasonTime=='56' & Biomass$Trait=='CanopyArea',]
-
-
+#Biomass[Biomass$Genotype=='19.16-273'& Biomass$Season=='2020-21'& Biomass$SeasonTime=='56' & Biomass$Trait=='CanopyArea',]
 
 head(Biomass)
 head(VIs)
@@ -114,9 +107,19 @@ image((is.na(df[, trait_cols])),
       main = paste("NA pattern -", "full"))
 
 
-colSums(is.na(df[, trait_cols])) == nrow(df)
-row_all_na <- apply(is.na(df[, trait_cols]), 1, all)
-sum(row_all_na)
+row_na <- rowMeans(is.na(df[, trait_cols]))
+
+# top rows with most NA
+sort(row_na, decreasing = TRUE)[1:10]
+
+col_na <- colMeans(is.na(df[, trait_cols]))
+
+sort(col_na, decreasing = TRUE)[1:10]
+
+i <- which.max(row_na)
+df[i, trait_cols]
+
+
 
 par(mfrow=c(3,3))  
 
@@ -156,4 +159,89 @@ for(i in trait_cols[40:49]){
 }
 
 
+
+
+
+
+
+seasons <- unique(df$Season)
+
+pdf("All_histograms.pdf", width = 10, height = 10)
+
+for(s in seasons){
+  
+  sub <- df[df$Season == s, ]
+  
+  for(start in seq(1, length(trait_cols), by = 9)){
+    
+    end <- min(start + 8, length(trait_cols))
+    
+    par(mfrow = c(3,3), mar = c(2,2,2,1))
+    
+    for(i in trait_cols[start:end]){
+      
+      x <- sub[[i]]
+      x <- x[!is.na(x)]
+      
+      if(length(x) > 0){
+        hist(x,
+             main = paste(i, "-", s),
+             xlab = "",
+             col = "lightblue",
+             cex.main = 0.8)
+      } else {
+        plot.new()
+        title(main = paste(i, "-", s))
+      }
+    }
+  }
+}
+
+dev.off()
+
+
+
+mean(df$RRI2[df$Season=='2020-21'], na.rm= TRUE)
+
+mean(df$RRI2[df$Season=='2024-25'], na.rm= TRUE)
+
+
+table(df$SeasonTime[df$Season=='2024-25'])
+mean(df$RRI2[df$Season=='2024-25' & df$SeasonTime=='48'], na.rm= TRUE)
+mean(df$RRI2[df$Season=='2024-25' & df$SeasonTime=='50'], na.rm= TRUE)
+mean(df$RRI2[df$Season=='2024-25' & df$SeasonTime=='55'], na.rm= TRUE)
+mean(df$RRI2[df$Season=='2024-25' & df$SeasonTime=='62'], na.rm= TRUE)
+mean(df$RRI2[df$Season=='2024-25' & df$SeasonTime=='99'], na.rm= TRUE)
+mean(df$RRI2[df$Season=='2024-25' & df$SeasonTime=='120'], na.rm= TRUE)
+mean(df$RRI2[df$Season=='2024-25' & df$SeasonTime=='134'], na.rm= TRUE)
+mean(df$RRI2[df$Season=='2024-25' & df$SeasonTime=='139'], na.rm= TRUE)
+
+SS <- df
+
+SS$RRi2 <- SS$RE/SS$R
+mean(SS$RRi2[SS$Season=='2024-25'], na.rm= TRUE)
+
+mean(SS$RRi2[SS$Season=='2024-25'& SS$SeasonTime=='48'], na.rm= TRUE)
+mean(SS$RRi2[SS$Season=='2024-25'& SS$SeasonTime=='50'], na.rm= TRUE)
+mean(SS$RRi2[SS$Season=='2024-25'& SS$SeasonTime=='55'], na.rm= TRUE)
+mean(SS$RRi2[SS$Season=='2024-25'& SS$SeasonTime=='62'], na.rm= TRUE)
+mean(SS$RRi2[SS$Season=='2024-25'& SS$SeasonTime=='99'], na.rm= TRUE)
+mean(SS$RRi2[SS$Season=='2024-25'& SS$SeasonTime=='120'], na.rm= TRUE)
+mean(SS$RRi2[SS$Season=='2024-25'& SS$SeasonTime=='134'], na.rm= TRUE)
+mean(SS$RRi2[SS$Season=='2024-25'& SS$SeasonTime=='139'], na.rm= TRUE)
+
+
+
+
+head(VIs1)
+VIs2 <- VIs[VIs$Season=='2021-22',]
+head(VIs2)
+VIs2$RRi2 <- VIs2$RE/VIs2$R
+mean(VIs2$RRi2[VIs2$SeasonTime=='48'], na.rm= TRUE)
+mean(VIs2$RRi2[VIs2$SeasonTime=='50'], na.rm= TRUE)
+
+VIs3 <- reshape(VIs2,idvar = c("Season", "Date", "SeasonTime", "Rep", "Genotype"), timevar = "Trait", direction = "wide")
+head()
+
+VIs2[VIs2$Genotype=='19.47-180',] 
 pheno <- read.csv('../../../P1/P1/1.data.combining/output/Phenos.csv')
