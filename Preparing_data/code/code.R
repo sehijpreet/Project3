@@ -3,7 +3,7 @@ rm(list=ls())
 
 getwd()
 
-setwd('../../Genotyping_data/output/')
+setwd('../../Preparing_data/output/')
 pheno <- read.csv('../data/BVI_mean.csv')
 
 load('../data/X4.rda')
