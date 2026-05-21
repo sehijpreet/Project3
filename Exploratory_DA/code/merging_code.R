@@ -114,8 +114,9 @@ head(df)
 
 write.csv(df, file = 'BVI_mean.csv', row.names= F)
 
+df1 <- read.csv('../../Exploratory_DA/output/BVI.csv')
 
-df <- read.csv('../../Exploratory_DA/output/BVI_mean.csv')
+df2 <- read.csv('../../Exploratory_DA/output/BVI_mean.csv')
 
 
 # Check NA pattern from column 6 to last column
@@ -158,40 +159,14 @@ image(t(is.na(df2[, 6:ncol(df2)])),
       col = c("white", "black"),
       main = "NA Pattern")
 
-# Add axis labels
-axis(1,at = seq(0, 1, length.out = nrow(df2)),labels = FALSE)
-
-axis(2,at = seq(0, 1, length.out = ncol(df2[, 6:ncol(df2)])),labels = names(df2)[6:ncol(df)],
-     las = 2,cex.axis = 0.5)
-
-
-
-identical(df, df2)
+identical(df1, df2)
+all.equal(df1, df2)
 
 
 
 
-## OR
-Biomass1 <- Biomass %>%
-  select(Season, Date, SeasonTime, Rep, Genotype, Trait, BLUE) %>%
-  spread(key = Trait, value = BLUE)
 
-
-VIs <- VIs %>%
-  select(Season, Date, SeasonTime, Rep, Genotype, Trait, BLUE) %>%
-  spread(key = Trait, value = BLUE)
-
-
-
-Biomass[535769,]
-Biomass[535885,]
-
-
-
-hist(VIs$BLUE[VIs$Trait=='RRI2' & VIs$Season=='2024-25'])
-
-table(VIs$Trait)
-
+###################################### DO NOT RUN #####################
 
 # subset RRI2 rows for 2024-25
 RRI2_2024_25 <- VIs[VIs$Season == "2024-25" & VIs$Trait == "RRI2",c("Date", "SeasonTime", "Rep", "Genotype", "BLUE")]
@@ -220,61 +195,30 @@ hist(RRI2_2024_25$BLUE, na.rm= TRUE)
 
 
 
-##  Check if reshape is correct
+##############################################################
 
-subset(
-  VIs,
-  Season == "2020-21" &
-    SeasonTime == 90 &
-    Genotype == "11.107-5" &
-    Rep == 1 &
-    Trait == "NDVI"
-)
+0.90 *54
 
-subset(
-  VIs,
-  Season == "2021-22" &
-    SeasonTime == 120 &
-    Genotype == "20.34-198" &
-    Rep == 5 &
-    Trait == "CCCI"
-)
+head(df1)
+df1[,6]
 
-subset(
-  VIs,
-  Season == "2021-22" &
-    SeasonTime == 120 &
-    Genotype == "20.34-198" &
-    Rep == 5 &
-    Trait == "NDVI"
-)
+# proportion of NA per row
+row_na <- rowMeans(is.na(df1[, 6:ncol(df1)]))
+
+# Remove rows with >=90% NA
+df_up1 <- df1[row_na < 0.90, ]
+df_up2 <- df1[row_na < 0.95, ]
+
+image(t(is.na(df_up2[, 6:ncol(df_up2)])),
+      axes = FALSE,
+      col = c("white", "black"),
+      main = "NA Pattern")
+
+
+image(t(is.na(df_up1[, 6:ncol(df_up1)])),
+      axes = FALSE,
+      col = c("white", "black"),
+      main = "NA Pattern (90% clean)")
 
 
 
-subset(
-  VIs,
-  Season == "2021-22" &
-    SeasonTime == 112 &
-    Genotype == "20.20R-127" &
-    Rep == 2 &
-    Trait == "NDVI"
-)
-
-subset(
-  VIs1,
-  Season == "2021-22" &
-    SeasonTime == 112 &
-    Genotype == "20.20R-127" &
-    Rep == 2
-)
-
-
-
-table(grepl('/', VIs$Date))
-table(grepl('/', VIs1$Date))
-
-
-table(VIs$Date)
-table(grepl('\\.', VIs$Genotype))
-
-VIs$Date
