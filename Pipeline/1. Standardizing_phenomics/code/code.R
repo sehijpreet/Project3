@@ -38,13 +38,17 @@ plot_before <- Pheno %>%
     values_to = "Value"
   )
 
+tiff("st_plot_before.tif",width = 12, height = 6, units = "in", res = 300)
+
 ggplot(plot_before,  aes(x = Stage, y = Value,color = Season, group = Season)) +
   stat_summary(fun = mean, geom = "line", linewidth = 1) +
   stat_summary(fun = mean, geom = "point") +
   facet_wrap(~Trait, scales = "free_y") +
   theme_bw()
 
+dev.off()
 
+Pheno[Pheno$Season=='2021-22' & Pheno$Stage=='S11',]
 ############  STANDARDIZE WITHIN SEASON  ####################
 
 St_Pheno <- Pheno %>%
@@ -70,13 +74,15 @@ plot_after <- St_Pheno %>%
     values_to = "Value"
   )
 
+tiff("st_plot_after.tif",width = 12, height = 6, units = "in", res = 300)
+
 ggplot(plot_after, aes(x = Stage,   y = Value,  color = Season, group = Season)) +
   stat_summary(fun = mean, geom = "line",  linewidth = 1) +
   stat_summary(fun = mean, geom = "point") +
   facet_wrap(~Trait, scales = "free_y") +
   theme_bw()
 
-
+dev.off()
 ################################# Check indices ##############
 
 head(Pheno)
@@ -148,7 +154,12 @@ dev.off()
 id_cols <- c("Season",  "Date",  "SeasonTime",  "Stage",  "Rep",  "Genotype")
 
 Pheno_st1 <- merge(St_Pheno[, c(id_cols, scaled_traits)], Ind_Pheno[, c(id_cols, ind_traits)],  by = id_cols,  all = TRUE) 
-Pheno_all1 <- merge(Pheno, Pheno_st,  by = id_cols,  all.x = TRUE)
+Pheno_all1 <- merge(Pheno, Pheno_st1,  by = id_cols,  all.x = TRUE)
+colnames(Pheno_all1)
+
+sum(duplicated(Pheno_st1[,id_cols]))
+sum(duplicated(Pheno_all1[,id_cols]))
+
 
 write.csv(Pheno_st1, file= 'Pheno_st.csv', row.names= FALSE)
 write.csv(Pheno, file = 'Pheno.csv', row.names=FALSE)                  
@@ -170,25 +181,5 @@ id_col <- c('Season', 'Stage', 'Rep', 'Genotype')
 sum(duplicated(Pheno_all1[, id_col]))
 
 
-################Check correlation of indices with responses ################
 
 
-Pheno_all1[1:5, 1:9]
-Res[1:5, 1:10]
-
-
-P_S1 <- Pheno_all1[Pheno_all1$Stage=='S1',]
-m_col <- c('Season', 'Genotype', 'Rep')
-dim(Res)
-dim(P_S1)
-
-df1 <- merge(Res, P_S1, by=m_col)
-df1 <-df1[, -c(17:24)]
-
-
-sum(duplicated(Res[, m_col]))
-
-sum(duplicated(P_S1[, m_col]))
-dup_res <- Res[ duplicated(Res[, m_col]) |duplicated(Res[, m_col], fromLast = TRUE),]
-
-dup_p <- P_S1[  duplicated(P_S1[, m_col]) | duplicated(P_S1[, m_col], fromLast = TRUE),]
