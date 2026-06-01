@@ -148,8 +148,7 @@ for(tr in traits) {
   
   for(season_i in unique(Res2$Season)) {
     
-    for(stage_i in unique(Res2$Stage)) {
-      
+
       tmp <- Res2[Res2$Season == season_i &  Res2$Stage == stage_i, ]
       
       tmp <- tmp[!is.na(tmp[[tr]]),]
@@ -191,7 +190,6 @@ for(tr in traits) {
         print(c(tr, season_i, stage_i))
       }
     }
-  }
 }
 
 # combine all BLUEs
@@ -201,7 +199,7 @@ head(Res_BLUEs_long)
 
 # convert to wide dataframe
 Res_BLUEs_wide <- Res_BLUEs_long %>%
-  pivot_wider(id_cols = c(Season,  Stage,  Genotype  ),
+  pivot_wider(id_cols = c(Season,   Genotype  ),
     names_from = Trait,
     values_from = BLUE
   )
