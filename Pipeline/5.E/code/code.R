@@ -4,8 +4,8 @@ getwd()
 setwd('../../5.E/output/')
 
 #X <- read.csv('../../3.Phenomic_profiling/output/Final_outs/Geno_matched.csv')
-#Pheno_orig <- read.csv('../../3.Phenomic_profiling/output/Final_outs/Pheno_orig_matched.csv')
-#Pheno_std <- read.csv('../../3.Phenomic_profiling/output/Final_outs/Pheno_std_matched.csv')
+Pheno_orig <- read.csv('../../3.Phenomic_profiling/output/Final_outs/Pheno_orig_matched.csv')
+Pheno_std <- read.csv('../../3.Phenomic_profiling/output/Final_outs/Pheno_std_matched.csv')
 Res <- read.csv('../../3.Phenomic_profiling/output/Final_outs/Res1_matched.csv')
 
 
@@ -50,3 +50,4 @@ save(EVD_E, file = "EVD_E.rda")
 rownames(ZEZt)[1:3]
 colnames(ZEZt)[1:3]
 rownames(EVD_E$vectors)[1:3]
+

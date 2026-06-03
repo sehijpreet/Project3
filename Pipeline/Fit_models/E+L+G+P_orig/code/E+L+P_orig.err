@@ -1,0 +1,36 @@
+Error in names(x) <- value : 
+  'names' attribute [7] must be the same length as the vector [6]
+Calls: colnames<-
+Execution halted
+Error in names(x) <- value : 
+  'names' attribute [7] must be the same length as the vector [6]
+Calls: colnames<-
+Execution halted
+Error in names(x) <- value : 
+  'names' attribute [7] must be the same length as the vector [6]
+Calls: colnames<-
+Execution halted
+Error in names(x) <- value : 
+  'names' attribute [7] must be the same length as the vector [6]
+Calls: colnames<-
+Execution halted
+Error in names(x) <- value : 
+  'names' attribute [7] must be the same length as the vector [6]
+Calls: colnames<-
+Execution halted
+Error in names(x) <- value : 
+  'names' attribute [7] must be the same length as the vector [6]
+Calls: colnames<-
+Execution halted
+Error in names(x) <- value : 
+  'names' attribute [7] must be the same length as the vector [6]
+Calls: colnames<-
+Execution halted
+Error in names(x) <- value : 
+  'names' attribute [7] must be the same length as the vector [6]
+Calls: colnames<-
+Execution halted
+Error in names(x) <- value : 
+  'names' attribute [7] must be the same length as the vector [6]
+Calls: colnames<-
+Execution halted
