@@ -84,14 +84,13 @@ ggplot(plot_after, aes(x = Stage,   y = Value,  color = Season, group = Season))
 
 dev.off()
 ################################# Check indices ##############
-
 head(Pheno)
 
 
 
 # indices to standardize
 colnames(Pheno)
-ind_traits <- names(Pheno[11:55])
+ind_traits <- names(Pheno[10:54])
 
 # BEFORE standardization ----------------------------
 
@@ -128,7 +127,7 @@ Ind_Pheno <- Pheno %>%
   ) %>%
   ungroup()
 
-ind_traits <- names(Ind_Pheno[56:100])
+ind_traits <- names(Ind_Pheno[55:99])
 
 
 plot_after <- Ind_Pheno %>%
@@ -151,7 +150,7 @@ ggplot(plot_after, aes(x = Stage,   y = Value,  color = Season, group = Season))
 dev.off()
 
 ############ Save after Standardize ###########
-id_cols <- c("Season",  "Date",  "SeasonTime",  "Stage",  "Rep",  "Genotype")
+id_cols <- c("Season",  "SeasonTime",  "Stage",  "Rep",  "Genotype")
 
 Pheno_st1 <- merge(St_Pheno[, c(id_cols, scaled_traits)], Ind_Pheno[, c(id_cols, ind_traits)],  by = id_cols,  all = TRUE) 
 Pheno_all1 <- merge(Pheno, Pheno_st1,  by = id_cols,  all.x = TRUE)
@@ -170,7 +169,7 @@ write.csv(Pheno_all1, file = 'Pheno_all.csv', row.names=FALSE)
 #####VAlidate if correctly merged
 
 
-Pheno_all[Pheno_all$Season == "2022-23" &  Pheno_all$Genotype == "Radiance" &  Pheno_all$Stage == "S5",]
+Pheno_all1[Pheno_all1$Season == "2022-23" &  Pheno_all1$Genotype == "Radiance" &  Pheno_all1$Stage == "S5",]
 
 Pheno[Pheno$Season == "2022-23" &  Pheno$Genotype == "Radiance" &  Pheno$Stage == "S5",]
 

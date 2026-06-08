@@ -38,17 +38,17 @@ Res1 <- Res
 
 ########### BLUEs for PHeno file  #####
 colnames(Pheno1)
-
+str(Pheno1)
 library(lme4)
 library(dplyr)
 
 head(Pheno1)
-traits <- colnames(Pheno1)[7:103]
+traits <- colnames(Pheno1)[7:102]
 
 sum(is.na(Pheno1$Rep))
-Pheno2 <- Pheno1
+Pheno2 <- Pheno1[,-c(103)]
 
-
+head(Pheno2)
 blue_list <- list()
 
 for(tr in traits) {
@@ -106,6 +106,11 @@ Pheno_BLUEs_long <- do.call(rbind,  blue_list)
 head(Pheno_BLUEs_long)
 
 # convert to wide dataframe
+getwd()
+
+Pheno_BLUEs_long <- read.csv('../Phenomic_BLUEs_long.csv')
+head(Pheno_BLUEs_long)
+
 
 Pheno_BLUEs_wide <- Pheno_BLUEs_long %>%
   tidyr::pivot_wider(

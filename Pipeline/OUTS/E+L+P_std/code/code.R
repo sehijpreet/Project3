@@ -1,7 +1,7 @@
 rm(list=ls())
 
 getwd()
-setwd('../../../OUTS/E+L+P_std/output/')
+setwd('../../OUTS/E+L+P_std/output/')
 
 Res <- read.csv('../../../3.Phenomic_profiling/output/Final_outs/Res1_matched.csv')
 

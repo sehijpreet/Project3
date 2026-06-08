@@ -3,8 +3,8 @@ rm(list=ls())
 
 getwd()
 
-setwd('../../../Preparing_data/output/')
-pheno <- read.csv('../data/BVI_mean.csv')
+setwd('../../Preparing_data/output/')
+pheno <- read.csv('../../Exploratory_DA/output/BVI_mean.csv')
 pheno0 <- read.csv('../../Exploratory_DA/output/BVI.csv')
 
 load('../data/X4.rda')
@@ -15,6 +15,7 @@ res0 <- read.csv('../data/Phenos.csv')
 
 table(res0$Season)
 
+table(pheno0$Season)
 
 res <- res0[res0$Season %in% c('2020-21', '2021-22', '2022-23', '2023-24', '2024-25', '2025-26'), ]
 table(res$Season)
@@ -32,6 +33,7 @@ res1<- res[res$Genotype %in% a, ]
 dim(geno1)
 g_pheno1 <- unique(pheno1$Genotype)
 g_res1 <- unique(res1$Genotype)
+table(pheno1$Season)
 
 library(tidyr)
 library(dplyr)
@@ -47,6 +49,12 @@ table(pheno1$Season)
 table(res2$Season)
 table(pheno1$Season, pheno1$SeasonTime)
 
+
+
+
+#pheno1[pheno1$Season=='2024-25' & pheno1$Genotype=='23.42-2',]
+
+
 #####time summary
 time_summary <- pheno1 %>%
   group_by(Season, SeasonTime) %>%
@@ -57,9 +65,15 @@ time_summary <- pheno1 %>%
   arrange(Season, SeasonTime)
 time_summary
 
+table(pheno1$Season,pheno1$SeasonTime)
+A <- pheno1[pheno1$Season=='2024-25',]
+B <- pheno1[pheno1$Season=='2025-26',]
+C <- pheno1[pheno1$Season=='2023-24',]
+table(A$Rep)
+table(B$Rep)
+table(C$Rep)
 
 library(ggplot2)
-
 ggplot(time_summary, aes(x = SeasonTime, y = Season,size = n)) +geom_point() +theme_bw()
 
 ref_dap <- c(45, 55, 65, 75, 85, 95, 105, 115, 125, 135, 145, 155)
@@ -99,9 +113,9 @@ str(nearest_table$SeasonTime)
 nearest_table[nearest_table$Season=='2024-25',]
 table(pheno1$SeasonTime[pheno1$Season=='2024-25'])
 
-nearest_table$SeasonTime[nearest_table$Season == "2024-25" & nearest_table$Stage == "S2"] <- 50
-nearest_table$SeasonTime[nearest_table$Season == "2024-25" & nearest_table$Stage == "S3"] <- 55
-nearest_table$SeasonTime[nearest_table$Season == "2024-25" & nearest_table$Stage == "S4"] <- 55
+#nearest_table$SeasonTime[nearest_table$Season == "2024-25" & nearest_table$Stage == "S2"] <- 50
+#nearest_table$SeasonTime[nearest_table$Season == "2024-25" & nearest_table$Stage == "S3"] <- 55
+#nearest_table$SeasonTime[nearest_table$Season == "2024-25" & nearest_table$Stage == "S4"] <- 55
 
 pheno2 <- merge(
   pheno1,
@@ -193,8 +207,7 @@ na_before <- colMeans(is.na(pheno2))
 na_after <- colMeans(is.na(pheno3))
 
 
-head(na_compare)
-
+head(na_after)
 dim(pheno1)
 dim(pheno3)
 
@@ -262,3 +275,4 @@ write.csv(pheno3, file= 'Phenomics.csv', row.names= FALSE)
 write.csv(geno1, file= 'Genomics.csv', row.names= FALSE)
 write.csv(nearest_table, file= 'Phenomic_Stages1.csv', row.names= FALSE)
 write.csv(res2, file= 'Response.csv', row.names= FALSE)
+

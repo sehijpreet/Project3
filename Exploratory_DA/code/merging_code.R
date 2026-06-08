@@ -3,7 +3,7 @@ rm(list=ls())
 
 getwd()
 
-setwd('../Desktop/PhD data/P3/Exploratory_DA/output/')
+setwd('../../Exploratory_DA/output/')
 
 VIs <- read.csv('../../UAV Database/Data2/VIs_Database_SpATS.csv')
 Biomass <- read.csv('../../UAV Database/Data2/Biomass_Database_SpATS.csv')
@@ -88,14 +88,21 @@ VIs_mean <- aggregate(BLUE ~ .,data = VIs,FUN = mean,na.rm = TRUE)
 # check duplicates again
 sum(duplicated(VIs_mean[, setdiff(names(VIs_mean), "BLUE")]))
 
+
+dim(VIs_mean)
 # Biomass - take mean of duplicate BLUE values and keep one row
 Biomass_mean <- aggregate(BLUE ~ .,data = Biomass,FUN = mean, na.rm = TRUE)
 # check duplicates again
 sum(duplicated(Biomass_mean[, setdiff(names(Biomass_mean), "BLUE")]))
 
+VIs_mean[VIs_mean$Season=='2020-21' & VIs_mean$SeasonTime==43 & VIs_mean$Rep==5 & VIs_mean$Genotype=='Radiance',]
+Biomass_mean[Biomass_mean$Season=='2020-21' & Biomass_mean$SeasonTime==43 & Biomass_mean$Rep==5 & Biomass_mean$Genotype=='Radiance',]
 
-write.csv(Biomass_mean, file= 'Biomass_mean.csv', row.names=FALSE)
-write.csv(VIs_mean, file = 'VIs_mean.csv', row.names= FALSE)
+table(VIs_mean$Season, VIs_mean$SeasonTime)
+table(Biomass_mean$Season, Biomass_mean$SeasonTime)
+
+#write.csv(Biomass_mean, file= 'Biomass_mean.csv', row.names=FALSE)
+#write.csv(VIs_mean, file = 'VIs_mean.csv', row.names= FALSE)
 
 library(dplyr)
 library(tidyr)
@@ -109,8 +116,13 @@ VIs1 <- VIs_mean %>%
 head(Biomass1)
 head(VIs1)
 
-df <- merge(Biomass1, VIs1, by = c("Season", "Date", "SeasonTime", "Rep", "Genotype"), all = TRUE)
+
+table(VIs1$Season, VIs1$SeasonTime)
+table(Biomass1$Season, Biomass1$SeasonTime)
+
+df <- merge(Biomass1, VIs1, by = c("Season", "SeasonTime", "Rep", "Genotype"), all = TRUE)
 head(df)
+table(df$Season, df$SeasonTime)
 
 write.csv(df, file = 'BVI_mean.csv', row.names= F)
 
@@ -148,7 +160,7 @@ names(VIs2) <- sub("^BLUE\\.", "", names(VIs2))
 head(VIs2)
 
 
-df2 <- merge(Biomass2, VIs2, by = c("Season", "Date", "SeasonTime", "Rep", "Genotype"), all = TRUE)
+df2 <- merge(Biomass2, VIs2, by = c("Season", "SeasonTime", "Rep", "Genotype"), all = TRUE)
 head(df2)
 
 write.csv(df2, file = 'BVI.csv', row.names= F)
@@ -162,7 +174,7 @@ image(t(is.na(df2[, 6:ncol(df2)])),
 identical(df1, df2)
 all.equal(df1, df2)
 
-
+table(df2$Season, df2$SeasonTime)
 
 
 

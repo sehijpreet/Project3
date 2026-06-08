@@ -1,7 +1,7 @@
 rm(list=ls())
 
 getwd()
-setwd('../Desktop/PhD data/P3/Pipeline/3.Phenomic_profiling/output/')
+setwd('../../../../../../Desktop/PhD data/P3/Pipeline/3.Phenomic_profiling/output/')
 
 Pheno <- read.csv('../../2.BLUEs/output/Phenomic_BLUEs_wide.csv')
 Res <- read.csv('../../2.BLUEs/output/Response_BLUEs_wide.csv')
@@ -83,7 +83,7 @@ for (s in Season) {
 dev.off()
 
 
-sum(is.na(Pheno1[,4:100]))
+sum(is.na(Pheno1[,4:99]))
 
 table(Pheno1$Season, Pheno1$Stage)
 table(Pheno$Season, Pheno$Stage)
@@ -195,6 +195,7 @@ dim(Pheno1_clean)
 
 
 ### Wide Pheno   ###########################################################################################
+stages_list <- paste0("S", 1:12)
 
 col_names_std  <- as.vector(outer(stages_list, std_names,  paste, sep = "_"))
 col_names_orig <- as.vector(outer(stages_list, orig_names, paste, sep = "_"))
@@ -316,20 +317,21 @@ table(Res1_matched$Season)
 
 
 ####
-dir.create('Final_outs',showWarnings = FALSE)
+dir.create('Final_outs1',showWarnings = FALSE)
 
-saveRDS(Pheno_std_matched, "Final_outs/Pheno_std_matched.rds")
-saveRDS(Pheno_orig_matched, "Final_outs/Pheno_orig_matched.rds")
-saveRDS(Res1_matched, "Final_outs/Res1_matched.rds")
-saveRDS(Geno_matched, "Final_outs/Geno_matched.rds")
+saveRDS(Pheno_std_matched, "Final_outs1/Pheno_std_matched.rds")
+saveRDS(Pheno_orig_matched, "Final_outs1/Pheno_orig_matched.rds")
+saveRDS(Res1_matched, "Final_outs1/Res1_matched.rds")
+saveRDS(Geno_matched, "Final_outs1/Geno_matched.rds")
 
-saveRDS(common_genos, "Final_outs/common_genos.rds")
+saveRDS(common_genos, "Final_outs1/common_genos.rds")
 
 
 ####
 # Save as CSV
-write.csv(Pheno_std_matched,  "Final_outs/Pheno_std_matched.csv",  row.names = FALSE)
-write.csv(Pheno_orig_matched, "Final_outs/Pheno_orig_matched.csv", row.names = FALSE)
-write.csv(Res1_matched, "Final_outs/Res1_matched.csv",       row.names = FALSE)
-write.csv(Geno_matched, "Final_outs/Geno_matched.csv",       row.names = TRUE)   
-write.csv(data.frame(Genotype = common_genos), "Final_outs/common_genos.csv", row.names = FALSE)
+write.csv(Pheno_std_matched,  "Final_outs1/Pheno_std_matched.csv",  row.names = FALSE)
+write.csv(Pheno_orig_matched, "Final_outs1/Pheno_orig_matched.csv", row.names = FALSE)
+write.csv(Res1_matched, "Final_outs1/Res1_matched.csv",       row.names = FALSE)
+write.csv(Geno_matched, "Final_outs1/Geno_matched.csv",       row.names = TRUE)   
+write.csv(data.frame(Genotype = common_genos), "Final_outs1/common_genos.csv", row.names = FALSE)
+
