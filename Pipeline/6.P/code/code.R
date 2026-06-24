@@ -1,12 +1,13 @@
 rm(list=ls())
 
 getwd()
-setwd('../../6.P/output/')
+setwd('../Desktop/PhD data/P3/Pipeline/3.Phenomic_profiling/output/Final_outs/')
+setwd('../../../6.P/output/')
 
 #X <- read.csv('../../3.Phenomic_profiling/output/Final_outs/Geno_matched.csv')
-Pheno_orig <- read.csv('../../3.Phenomic_profiling/output/Final_outs/Pheno_orig_matched.csv')
-Pheno_std <- read.csv('../../3.Phenomic_profiling/output/Final_outs/Pheno_std_matched.csv')
-Res <- read.csv('../../3.Phenomic_profiling/output/Final_outs/Res1_matched.csv')
+Pheno_orig <- read.csv('../../3.Phenomic_profiling/output/Final_outs1/Pheno_orig_matched.csv')
+Pheno_std <- read.csv('../../3.Phenomic_profiling/output/Final_outs1/Pheno_std_matched.csv')
+Res <- read.csv('../../3.Phenomic_profiling/output/Final_outs1/Res1_matched.csv')
 
 load('../../4.G/output/G.rda')
 load('../../4.G/output/ZGZt.rda')
@@ -97,11 +98,18 @@ for(stg in stages_list){
 round(sapply(P_std_stages,  function(k) mean(diag(k))), 3)
 round(sapply(P_orig_stages, function(k) mean(diag(k))), 3)
 
+P_std_1 <- P_std
+getwd()
+P_std_2  <- load('P_std.rda')
+
+all.equal(P_std_1, P_std_2)
+identical(P_std_1, P_std_2)
+
 # --- 5.7: Save ---
 save(P_std,        file = "P_std.rda")
 save(P_orig,       file = "P_orig.rda")
 save(P_std_stages, file = "P_std_stages.rda")
-save(P_orig_stages,file = "P_orig_stages.rda")
+save(P_orig_stages, file = "P_orig_stages.rda")
 
 
 #############

@@ -1,0 +1,156 @@
+Alpha: 0 
+Alpha: 0.1 
+Alpha: 0.2 
+Alpha: 0.7 
+Alpha: 0.8 
+Alpha: 0.5 
+Alpha: 0.3 
+Alpha: 0.6 
+Alpha: 0.4 
+Alpha: 1 
+Alpha: 0.9 
+alpha: 0.7 | trait: X1 
+alpha: 1 | trait: X1 
+alpha: 0.2 | trait: X1 
+alpha: 0.6 | trait: X1 
+alpha: 0.8 | trait: X1 
+alpha: 0.3 | trait: X1 
+alpha: 0 | trait: X1 
+alpha: 0.5 | trait: X1 
+alpha: 0.4 | trait: X1 
+alpha: 0.9 | trait: X1 
+alpha: 0.1 | trait: X1 
+alpha: 1 | trait: X2 
+alpha: 0.9 | trait: X2 
+alpha: 0.8 | trait: X2 
+alpha: 0.2 | trait: X2 
+alpha: 0 | trait: X2 
+alpha: 0.4 | trait: X2 
+alpha: 0.3 | trait: X2 
+alpha: 0.5 | trait: X2 
+alpha: 0.7 | trait: X2 
+alpha: 0.1 | trait: X2 
+alpha: 0.6 | trait: X2 
+alpha: 1 | trait: X3 
+alpha: 0.9 | trait: X3 
+alpha: 0.2 | trait: X3 
+alpha: 0.8 | trait: X3 
+alpha: 0.3 | trait: X3 
+alpha: 0.5 | trait: X3 
+alpha: 0.7 | trait: X3 
+alpha: 0 | trait: X3 
+alpha: 0.6 | trait: X3 
+alpha: 1 | trait: X4 
+alpha: 0.4 | trait: X3 
+alpha: 0.1 | trait: X3 
+alpha: 0.9 | trait: X4 
+alpha: 0.8 | trait: X4 
+alpha: 0.2 | trait: X4 
+alpha: 0.5 | trait: X4 
+alpha: 1 | trait: X5 
+alpha: 0.7 | trait: X4 
+alpha: 0.3 | trait: X4 
+alpha: 0.6 | trait: X4 
+alpha: 0 | trait: X4 
+alpha: 0.4 | trait: X4 
+alpha: 0.1 | trait: X4 
+alpha: 0.9 | trait: X5 
+alpha: 1 | trait: X6 
+alpha: 0.5 | trait: X5 
+alpha: 0.2 | trait: X5 
+alpha: 0.7 | trait: X5 
+alpha: 0.3 | trait: X5 
+alpha: 0.6 | trait: X5 
+alpha: 0.8 | trait: X5 
+alpha: 0.4 | trait: X5 
+alpha: 0.1 | trait: X5 
+alpha: 0 | trait: X5 
+alpha: 0.9 | trait: X6 
+alpha: 1 | trait: X7 
+alpha: 0.7 | trait: X6 
+alpha: 0.5 | trait: X6 
+alpha: 0.2 | trait: X6 
+alpha: 0.8 | trait: X6 
+alpha: 0.6 | trait: X6 
+alpha: 0.3 | trait: X6 
+alpha: 0.4 | trait: X6 
+alpha: 0.1 | trait: X6 
+alpha: 1 | trait: X8 
+alpha: 0 | trait: X6 
+alpha: 0.9 | trait: X7 
+alpha: 0.5 | trait: X7 
+alpha: 0.7 | trait: X7 
+alpha: 0.2 | trait: X7 
+alpha: 1 | trait: X9 
+alpha: 0.8 | trait: X7 
+alpha: 0.6 | trait: X7 
+alpha: 0.3 | trait: X7 
+alpha: 0.4 | trait: X7 
+alpha: 0 | trait: X7 
+alpha: 0.9 | trait: X8 
+alpha: 0.1 | trait: X7 
+alpha: 1 | trait: X10 
+alpha: 0.7 | trait: X8 
+alpha: 0.5 | trait: X8 
+alpha: 0.8 | trait: X8 
+alpha: 0.4 | trait: X8 
+alpha: 0.6 | trait: X8 
+alpha: 0.2 | trait: X8 
+alpha: 0.3 | trait: X8 
+alpha: 0 | trait: X8 
+alpha: 0.9 | trait: X9 
+alpha: 0.1 | trait: X8 
+alpha: 1 | trait: X1_cum 
+alpha: 0.7 | trait: X9 
+alpha: 0.5 | trait: X9 
+alpha: 0.8 | trait: X9 
+alpha: 0.6 | trait: X9 
+alpha: 0.4 | trait: X9 
+alpha: 0.3 | trait: X9 
+alpha: 0.2 | trait: X9 
+alpha: 0.9 | trait: X10 
+alpha: 0 | trait: X9 
+alpha: 0.1 | trait: X9 
+alpha: 0.7 | trait: X10 
+alpha: 0.8 | trait: X10 
+alpha: 0.5 | trait: X10 
+alpha: 0.6 | trait: X10 
+alpha: 0 | trait: X10 
+alpha: 0.4 | trait: X10 
+alpha: 0.9 | trait: X1_cum 
+alpha: 0.3 | trait: X10 
+alpha: 0.2 | trait: X10 
+alpha: 0.1 | trait: X10 
+alpha: 0.7 | trait: X1_cum 
+alpha: 0.8 | trait: X1_cum 
+alpha: 0.6 | trait: X1_cum 
+alpha: 0 | trait: X1_cum 
+alpha: 0.5 | trait: X1_cum 
+alpha: 0.3 | trait: X1_cum 
+alpha: 0.4 | trait: X1_cum 
+alpha: 0.2 | trait: X1_cum 
+alpha: 0.1 | trait: X1_cum 
+         a_0 a_0.1 a_0.2 a_0.3 a_0.4 a_0.5 a_0.6 a_0.7 a_0.8 a_0.9   a_1
+X1     0.978 0.978 0.979 0.979 0.979 0.979 0.980 0.980 0.980 0.980 0.980
+X2     0.968 0.969 0.970 0.970 0.970 0.970 0.971 0.971 0.971 0.971 0.971
+X3     0.764 0.781 0.791 0.800 0.801 0.800 0.807 0.804 0.805 0.805 0.809
+X4     0.771 0.783 0.793 0.794 0.795 0.798 0.804 0.808 0.806 0.805 0.813
+X5     0.703 0.720 0.733 0.734 0.736 0.738 0.739 0.740 0.734 0.739 0.736
+X6     0.709 0.700 0.708 0.707 0.712 0.709 0.711 0.711 0.712 0.704 0.714
+X7     0.656 0.705 0.716 0.716 0.721 0.722 0.719 0.718 0.716 0.721 0.710
+X8     0.675 0.724 0.740 0.754 0.752 0.754 0.756 0.753 0.754 0.753 0.758
+X9     0.739 0.772 0.784 0.792 0.794 0.804 0.804 0.804 0.804 0.805 0.802
+X10    0.790 0.814 0.818 0.820 0.821 0.824 0.826 0.827 0.828 0.829 0.830
+X1_cum 0.978 0.978 0.979 0.979 0.979 0.979 0.980 0.980 0.980 0.980 0.980
+       Best_alpha Best_cor
+X1            0.6    0.980
+X2            0.6    0.971
+X3            1.0    0.809
+X4            1.0    0.813
+X5            0.7    0.740
+X6            1.0    0.714
+X7            0.5    0.722
+X8            1.0    0.758
+X9            0.9    0.805
+X10           1.0    0.830
+X1_cum        0.6    0.980

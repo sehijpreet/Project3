@@ -3,10 +3,10 @@ rm(list=ls())
 getwd()
 setwd('../../4.G/output/')
 
-X <- read.csv('../../3.Phenomic_profiling/output/Final_outs/Geno_matched.csv')
-Pheno_orig <- read.csv('../../3.Phenomic_profiling/output/Final_outs/Pheno_orig_matched.csv')
-Pheno_std <- read.csv('../../3.Phenomic_profiling/output/Final_outs/Pheno_std_matched.csv')
-Res <- read.csv('../../3.Phenomic_profiling/output/Final_outs/Res1_matched.csv')
+X <- read.csv('../../3.Phenomic_profiling/output/Final_outs1/Geno_matched.csv')
+Pheno_orig <- read.csv('../../3.Phenomic_profiling/output/Final_outs1/Pheno_orig_matched.csv')
+Pheno_std <- read.csv('../../3.Phenomic_profiling/output/Final_outs1/Pheno_std_matched.csv')
+Res <- read.csv('../../3.Phenomic_profiling/output/Final_outs1/Res1_matched.csv')
 
 for(i in 1:ncol(X)){
   meanXi <- mean(X[, i], na.rm = TRUE)
