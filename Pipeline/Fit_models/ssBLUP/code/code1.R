@@ -2,7 +2,7 @@ rm(list=ls())
 
 library(BGLR)
 library(parallel)
-
+getwd()
 # --- Load ---
 Res <- read.csv('../../../3.Phenomic_profiling/output/Final_outs/Res1_matched.csv')
 load('../../../6.P/output/P_std.rda')

@@ -1,8 +1,8 @@
 
 rm(list=ls())
 getwd()
-setwd('../Desktop/PhD data/P3/Pipeline/Fit_models/E+L+G/output/2023-24')
-setwd('../../Fit_models/E+L+G/output/')
+setwd("../2020-21")
+setwd('../Desktop/PhD data/P3/Pipeline/Fit_models/E+L+G/output/2020-21')
 library(BGLR)
 
 source('../../input/parameters.R')
@@ -16,9 +16,9 @@ head(Y)
 trait_cols  <- 3:ncol(Y)
 trait_names <- colnames(Y)[trait_cols]
 
-# --- Prediction set: 2023-24 ---
-pred_idx  <- which(Y[, colSEA] == "2023-24")
-train_idx <- which(Y[, colSEA] != "2023-24")
+# --- Prediction set: 2020-21 ---
+pred_idx  <- which(Y[, colSEA] == "2020-21")
+train_idx <- which(Y[, colSEA] != "2020-21")
 
 
 # --- Build ETA from AB list ---
@@ -39,8 +39,8 @@ for(i in 1:nk){
 if(exists("EVD")) rm(EVD)
 
 
-# --- Output folder for 2023-24 predictions ---
-dir.create("2023-24_pred", showWarnings = FALSE)
+# --- Output folder for 2020-21 predictions ---
+dir.create("2020-21_pred", showWarnings = FALSE)
 
 summary_list <- vector("list", length(trait_names))
 names(summary_list) <- trait_names
@@ -54,7 +54,7 @@ for(trait in trait_names){
   y <- Y[, trait]
   if(ESC){ y <- scale(y, center = TRUE, scale = TRUE) }
   
-  # Mask 2023-24
+  # Mask 2020-21
   yNA           <- y
   yNA[pred_idx] <- NA
   
@@ -71,17 +71,17 @@ for(trait in trait_names){
   
   write.csv(all_preds, paste0(trait, "/predictions_", trait, ".csv"), row.names = TRUE)
   
-  # 2023-24 predictions only
+  # 2020-21 predictions only
   pred_out <- all_preds[pred_idx, ]
-  write.csv(pred_out,  paste0("2023-24_pred/", trait, "_2023-24.csv"), row.names = TRUE)
+  write.csv(pred_out,  paste0("2020-21_pred/", trait, "_2020-21.csv"), row.names = TRUE)
   
   # Summary
   summary_list[[trait]] <- data.frame(Trait  = trait,
-    Cor    = round(acc, 3),
-    VarE   = round(fm$varE, 4),
-    VarK1  = round(fm$ETA[[1]]$varU, 4),
-    VarK2  = round(fm$ETA[[2]]$varU, 4),
-    VarK3  = round(fm$ETA[[3]]$varU, 4)
+                                      Cor    = round(acc, 3),
+                                      VarE   = round(fm$varE, 4),
+                                      VarK1  = round(fm$ETA[[1]]$varU, 4),
+                                      VarK2  = round(fm$ETA[[2]]$varU, 4),
+                                      VarK3  = round(fm$ETA[[3]]$varU, 4)
   )
   
   # Clean BGLR temp files
@@ -97,14 +97,14 @@ colnames(summary_df)[5:7] <- c("VarE_kernel", "VarL_kernel", "VarG_kernel")
 write.csv(summary_df, "ELG_summary.csv", row.names = FALSE)
 print(summary_df)
 
-# Combined 2023-24 all traits
+# Combined 2020-21 all traits
 pred_combined <- data.frame(Season = Y[pred_idx, colSEA], Genotype = Y[pred_idx, colVAR])
 
 for(trait in trait_names){
-  tmp <- read.csv(paste0("2023-24_pred/", trait, "_2023-24.csv"))
+  tmp <- read.csv(paste0("2020-21_pred/", trait, "_2020-21.csv"))
   pred_combined[, trait] <- tmp$y_hat
 }
 
-write.csv(pred_combined,"2023-24_pred/ELG_all_traits_combined.csv", row.names = FALSE)
+write.csv(pred_combined,"2020-21_pred/ELG_all_traits_combined.csv", row.names = FALSE)
 
 head(pred_combined)

@@ -1,8 +1,8 @@
 
 rm(list=ls())
 getwd()
-setwd('../Desktop/PhD data/P3/Pipeline/Fit_models/E+L+G/output/2023-24')
-setwd('../../Fit_models/E+L+G/output/')
+setwd('../2023-24')
+# setwd('../../Fit_models/E+L+G/output/')
 library(BGLR)
 
 source('../../input/parameters.R')
@@ -93,7 +93,7 @@ for(trait in trait_names){
 
 
 summary_df <- do.call(rbind, summary_list)
-colnames(summary_df)[5:7] <- c("VarE_kernel", "VarL_kernel", "VarG_kernel")
+colnames(summary_df)[4:6] <- c("VarE_kernel", "VarL_kernel", "VarG_kernel")
 write.csv(summary_df, "ELG_summary.csv", row.names = FALSE)
 print(summary_df)
 
